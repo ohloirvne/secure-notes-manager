@@ -1,0 +1,34 @@
+#notes-manager {
+    width: 80%;
+    margin: auto;
+    text-align: center;
+}
+
+#note-input {
+    width: 70%;
+    height: 100px;
+    margin-bottom: 10px;
+}
+
+#add-note-btn {
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+#notes-list {
+    list-style-type: none;
+    padding: 0;
+}
+
+.note-item {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    display: flex;
+    justify-content: space-between;
+}
+
+.delete-note-btn {
+    color: red;
+    cursor: pointer;
+}
