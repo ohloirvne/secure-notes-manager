@@ -4,6 +4,13 @@
     text-align: center;
 }
 
+#note-title {
+    width: 70%;
+    margin-bottom: 10px;
+    padding: 5px;
+    font-size: 16px;
+}
+
 #note-input {
     width: 70%;
     height: 100px;
@@ -20,15 +27,122 @@
     padding: 0;
 }
 
+#search-notes {
+    width: 70%;
+    padding: 5px;
+    margin-bottom: 15px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+.note-details {
+    margin-top: 10px;
+    padding: 10px;
+    border: 1px dashed #aaa;
+    background-color: #f9f9f9;
+    display: none; /* Hidden by default */
+}
+
 .note-item {
+	cursor: pointer; /* Indicate clickable list items */
     margin: 10px 0;
     padding: 10px;
     border: 1px solid #ccc;
     display: flex;
-    justify-content: space-between;
+    flex-direction: column; /* Allow vertical stacking of title, content, and button */
+    justify-content: flex-start; /* Align items at the top initially */
+    position: relative; /* Ensure the delete button stays within this box */
+    transition: height 0.3s ease; /* Smooth transition when the box grows */
+	width: 95%;
+	margin-left: auto;
+	margin-right: auto;
 }
 
-.delete-note-btn {
-    color: red;
-    cursor: pointer;
+.note-content {
+	margin-top: 10px; /* Small gap between title and content */
+    padding: 10px;
+    border: 1px dashed #aaa;
+    background-color: #f9f9f9;
+    display: none; /* Hidden by default */
+    width: 100%;  /* Ensure it stretches below the title box  */
+    box-sizing: border-box; /* Include padding in the element's total width */
 }
+
+.delete-note-btn, .edit-note-btn {
+    margin-top: 10px; 
+    padding: 5px 15px;
+    background-color: white;
+    color: red;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+	display: inline-block; /* Ensure it's always on a new line */
+	position: relative;
+}
+
+.edit-note-btn {
+	color: blue;
+}
+
+.lock-note-btn, .unlock-note-btn {
+    margin-top: 10px;
+    padding: 5px 15px;    
+	background-color: white;
+    color: black;
+    border: none;
+    cursor: pointer;
+    border-radius: 4px;
+    display: inline-block;
+    position: relative;
+}
+
+.note-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 50px; /* Ensures correct spacing between buttons */
+    margin-top: 5px;
+	margin-bottom: 5px;
+	padding-top: 5px;
+	display: none; /* Hide buttons initially */
+}
+
+.note-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.note-title-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 100%;
+}
+
+.note-title {
+    font-size: 17px;
+    font-weight: bold;
+    flex-grow: 1; /* Ensure title takes up most of the space */
+	text-align: left;
+	padding-right: 10px;
+	cursor: pointer; /* Indicate that titles are clickable */
+}
+
+.note-timestamp {
+    font-size: 12px;
+    color: gray;
+	white-space: nowrap;
+    margin-left: 10px;
+    text-align: right;
+}
+
+.note-divider {
+	opacity: 0;
+    width: 2px;
+    background-color: #ccc;
+    margin: 0 10px;
+    height: 20px; /* Adjust this height as needed */
+}
+
