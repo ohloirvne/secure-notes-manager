@@ -12,8 +12,13 @@ let editingIndex = null; // Track the index of the note being edited
 let tempPasscode = null; // Hold passcode in temporarily memory
 let unsavedChanges = false; // Track unsaved changes
 
-noteInput.addEventListener('input', () => (unsavedChanges = true;));
-noteTitleInput.addEventListener('input', () => (unsavedChanges = true;));
+noteInput.addEventListener('input', () => {
+	unsavedChanges = true;
+});
+	
+noteTitleInput.addEventListener('input', () => {
+	unsavedChanges = true;
+});
 
 // Check for saved dark mode preference
 if (localStorage.getItem('darkMode') === 'enabled') {

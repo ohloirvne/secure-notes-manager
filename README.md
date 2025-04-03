@@ -1,13 +1,12 @@
 
 # secure-notes-manager
-VaultNotes - Secure Notes Manager
-A simple & secure notes management app.
+VaultNotes - A simple & secure notes management app
 
 Features:
-Create, edit, and Delete Notes - Easily manage your notes with intuitive actions.
-Lock notes with Passcode Encryption - Encrypt sensitive notes with AES encryption.
-Search Notes by Title and Content - Quickly locate notes with a powerful search bar.
-Automatic timestamps - Automatically see when a note was created or last edited.
+- Create, edit, and Delete Notes - Easily manage your notes with intuitive actions. 
+- Lock notes with Passcode Encryption - Encrypt sensitive notes with AES encryption.
+- Search Notes by Title and Content - Quickly locate notes with a powerful search bar.
+- Automatic timestamps - Automatically see when a note was created or last edited.
 
 Getting Started:
 1. Clone the Repository
