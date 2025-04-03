@@ -6,17 +6,30 @@ const noteInput = document.getElementById('note-input');
 const addNoteBtn = document.getElementById('add-note-btn');
 const notesList = document.getElementById('notes-list');
 const searchInput = document.getElementById('search-notes');
+const darkModeToggle = document.getElementById('dark-mode-toggle');
 
 let editingIndex = null; // Track the index of the note being edited
 let tempPasscode = null; // Hold passcode in temporarily memory
 let unsavedChanges = false; // Track unsaved changes
 
-noteInput.addEventListener('input', () => {
-    unsavedChanges = true;
-});
+noteInput.addEventListener('input', () => (unsavedChanges = true;));
+noteTitleInput.addEventListener('input', () => (unsavedChanges = true;));
 
-noteTitleInput.addEventListener('input', () => {
-    unsavedChanges = true;
+// Check for saved dark mode preference
+if (localStorage.getItem('darkMode') === 'enabled') {
+    document.body.classList.add('dark-mode');
+    darkModeToggle.checked = true; // Move slider to the right
+}
+
+// Event listener for toggling dark mode
+darkModeToggle.addEventListener('change', () => {
+    if (darkModeToggle.checked) {
+        document.body.classList.add('dark-mode');
+        localStorage.setItem('darkMode', 'enabled');
+    } else {
+        document.body.classList.remove('dark-mode');
+        localStorage.setItem('darkMode', 'disabled');
+    }
 });
 
 // Load notes from localStorage
@@ -44,7 +57,14 @@ function renderNote(note, index) {
 	const noteDivider = document.createElement('div');
 	noteDivider.className = 'note-divider';
 	
-	// Timestamp span
+	// Show lock icon if note is locked
+	if (note.locked) {
+		noteDivider.innerHTML = '<i class="fas fa-lock"></i>';
+	} else {
+		noteDivider.innerHTML = '';
+	}
+	
+	// Timestamp text
     const noteTimestampSpan = document.createElement('span');
     noteTimestampSpan.className = 'note-timestamp';
 	const timestampText = note.createdAt 
@@ -118,7 +138,7 @@ function renderNote(note, index) {
 function toggleNoteContent(noteItem, noteContentDiv, noteButtons, note) {
     const notes = JSON.parse(localStorage.getItem('notes')) || [];
     const index = parseInt(noteItem.dataset.index);
-    note = notes[index]; // Correctly fetch the note again
+    note = notes[index];
 
     if (!note) {
         console.error('Note not found at index:', index);
@@ -157,6 +177,12 @@ function toggleNoteContent(noteItem, noteContentDiv, noteButtons, note) {
 
         noteContentDiv.style.display = 'block';
         noteButtons.style.display = 'flex';
+		
+		// Scroll the note into view
+		noteItem.scrollIntoView({
+			behavior: 'smooth',
+			block: 'center',
+		});
     } else {
         // If locked note, re-encrypt before closing
         if (note.locked && note.decryptedContent) {
@@ -195,6 +221,7 @@ function saveNote() {
         }
 
         note.title = noteTitle;
+		note.createdAt = null;
 		note.lastEditedAt = getCurrentTime(); // Set last edited timestamp
 		
 		// Move edited note to the top

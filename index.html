@@ -4,22 +4,33 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Secure Notes Manager</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="style.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/crypto-js/4.1.1/crypto-js.min.js"></script>
 </head>
 <body>
     <div id="app">
-		<h1>VaultNotes</h1>
+		<h1><span>Vault</span><span style="color: #008e97;">N</span>otes</h1>
+		
+		<label class="toggle-switch">
+            <input type="checkbox" id="dark-mode-toggle">
+            <span class="slider"></span>
+        </label>
+		
 		<div>
 			<input type="text" id="note-title" placeholder="Untitled">
 			<textarea id="note-input" placeholder="Write your note here..."></textarea>
 			<button id="add-note-btn">Save Note</button>
 		</div>
-		<h2>Your Notes:</h2>
+		
+		<div id="line-container"></div>
+		
+		<h2><span style="color: #008e97;">N</span>otes:</h2>
 		<input type="text" id="search-notes" placeholder="Search notes...">
 		<ul id="notes-list"></ul>
 		<div id="note-details"></div>
     </div>
+	
     <script src="script.js"></script>
 </body>
 </html>
